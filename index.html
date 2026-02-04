@@ -2,45 +2,49 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<title>Fête du Costard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Danseur en Costard</title>
 <style>
-    /* Tout le fond en noir et suppression des marges */
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background-color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Conteneur de la vidéo pour la centrer */
-    .video-container {
-        position: relative;
-        width: 90%;
-        max-width: 600px; /* limite la taille sur grand écran */
-        aspect-ratio: 16/9; /* garde le format de la vidéo */
-    }
-
-    /* La vidéo prend tout l'espace du conteneur et garde le ratio */
-    video {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: contain; /* garde le danseur visible */
-        border-radius: 10px; /* optionnel, arrondi les coins */
-        box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    }
+  body {
+    margin: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  video {
+    max-width: 100%;
+    max-height: 100%;
+  }
 </style>
 </head>
 <body>
 
-<div class="video-container">
-    <video src="costardbleugars.mp4" autoplay loop muted playsinline></video>
-</div>
+<video id="video" src="costardbleugars.mp4" preload="auto"></video>
+
+<script>
+const video = document.getElementById("video");
+let audioStarted = false;
+
+// Quand on appuie n'importe où, on joue la vidéo et le son
+document.body.addEventListener("click", () => {
+    if (!audioStarted) {
+        video.play(); // démarre la vidéo si pas déjà
+        audioStarted = true;
+    }
+});
+
+// Autoplay sans son pour que la vidéo démarre visuellement
+video.autoplay = true;
+video.muted = true;
+video.playsInline = true;
+video.loop = true; // optionnel, si tu veux que ça boucle
+video.play();
+</script>
 
 </body>
 </html>
+
 
