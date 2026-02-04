@@ -14,37 +14,43 @@
     height: 100vh;
     overflow: hidden;
   }
+
   video {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90%;   /* largeur adaptée aux téléphones */
+    max-height: 70%;  /* hauteur adaptée */
+    border-radius: 10px; /* optionnel, pour un petit style */
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
   }
 </style>
 </head>
 <body>
 
-<video id="video" src="costardbleugars.mp4" preload="auto"></video>
+<video id="video" src="costardbleugars.mp4" preload="auto" loop playsinline></video>
+<div class="overlay"></div>
 
 <script>
 const video = document.getElementById("video");
-let audioStarted = false;
+const overlay = document.querySelector(".overlay");
+let soundStarted = false;
 
-// Quand on appuie n'importe où, on joue la vidéo et le son
-document.body.addEventListener("click", () => {
-    if (!audioStarted) {
-        video.play(); // démarre la vidéo si pas déjà
-        audioStarted = true;
+// On mute la vidéo au début pour l'autoplay
+video.muted = true;
+video.play();
+
+// Fonction pour lancer le son au clic
+overlay.addEventListener("click", () => {
+    if (!soundStarted) {
+        video.muted = false;  // active le son
+        soundStarted = true;
+        overlay.style.display = "none"; // on cache le clic
     }
 });
-
-// Autoplay sans son pour que la vidéo démarre visuellement
-video.autoplay = true;
-video.muted = true;
-video.playsInline = true;
-video.loop = true; // optionnel, si tu veux que ça boucle
-video.play();
 </script>
 
 </body>
 </html>
-
-
