@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danseur en Costard</title>
+<style>
+    /* Tout le fond en noir et suppression des marges */
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Conteneur de la vidéo pour la centrer */
+    .video-container {
+        position: relative;
+        width: 90%;
+        max-width: 600px; /* limite la taille sur grand écran */
+        aspect-ratio: 16/9; /* garde le format de la vidéo */
+    }
+
+    /* La vidéo prend tout l'espace du conteneur et garde le ratio */
+    video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain; /* garde le danseur visible */
+        border-radius: 10px; /* optionnel, arrondi les coins */
+        box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+</style>
+</head>
+<body>
+
+<div class="video-container">
+    <video src="costardbleugars.mp4" autoplay loop muted playsinline></video>
+</div>
+
+</body>
+</html>
 
